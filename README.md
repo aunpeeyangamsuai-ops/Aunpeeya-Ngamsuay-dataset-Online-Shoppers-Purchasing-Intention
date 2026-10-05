@@ -3,8 +3,6 @@
 Dashboard แบบ interactive (d3.js) แสดงพฤติกรรมผู้เยี่ยมชมร้านค้าออนไลน์ 12,330 เซสชัน
 ว่าอะไรสัมพันธ์กับการตัดสินใจซื้อ ออกแบบด้วยธีมซุปเปอร์มาร์เก็ต
 
-**Live URL:** (ใส่ลิงก์ GitHub Pages ที่นี่ เช่น https://USERNAME.github.io/REPO/web/d3/)
-
 ## กราฟและ interactivity
 - กราฟ 5 แบบ: กราฟแท่ง, กราฟเส้น, แผนภาพกระจาย, โดนัท, heatmap
 - interactivity: filter (คลิกแท่ง/โดนัท/ช่อง heatmap), tooltip, brush (ลากเลือกบนแผนภาพกระจาย)
