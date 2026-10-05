@@ -5,10 +5,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700&family=IBM+Plex+Sans+Thai:wght@400;500;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link rel="stylesheet" href="css/style.css"></head><body><div class="lane" aria-hidden="true"><span class="cartrun" id="cartrun">🛒</span><div class="awning"></div></div>
-<main>
+<nav class="nav" aria-label="เมนูหลัก"><a class="brand" href="#top" aria-label="กลับขึ้นด้านบน"><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 7H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19" r="1.6" fill="currentColor"/><circle cx="17" cy="19" r="1.6" fill="currentColor"/></svg><span>Online Shoppers</span></a>
+<div class="links"><a href="#overview">ภาพรวม</a><a href="#monthly">รายเดือน</a><a href="#segments">กลุ่มลูกค้า</a><a href="#behavior">พฤติกรรม</a><a href="#heatmap">Heatmap</a><a href="#downloads">ดาวน์โหลด</a></div></nav>
+<main id="top">
 <div class="head"><h1><svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 10.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20 7H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19" r="1.6" fill="currentColor"/><circle cx="17" cy="19" r="1.6" fill="currentColor"/></svg>Online Shoppers Purchasing Intention</h1><div class="tools"><button class="cartbadge" id="cartb" aria-label="จำนวนเซสชันที่ซื้อ คลิกเพื่อให้รถเข็นวิ่ง">🛒 ซื้อแล้ว <span id="cb">0</span></button><button id="theme" aria-label="สลับโหมดสว่างหรือมืด">◐ สลับธีม</button></div></div>
 <p class="sub">ข้อมูล 12,330 เซสชันของร้านค้าออนไลน์ คลิกแท่งกราฟหรือลากเลือกบนแผนภาพกระจายเพื่อกรอง ทุกกราฟจะอัปเดตตามกัน</p>
-<div class="kpis">
+<div class="kpis" id="overview">
 <div class="kpi"><b id="k1"></b><span>เซสชันที่เลือก</span></div>
 <div class="kpi"><b id="k2"></b><span>เซสชันที่ซื้อ</span></div>
 <div class="kpi hot"><b id="k3"></b><span>อัตราการซื้อ</span></div>
@@ -17,16 +19,24 @@
 <div class="insight" id="insight" aria-live="polite"></div>
 <div class="bar"><div class="chips" id="chips"><span class="hint">ยังไม่ได้กรอง กำลังแสดงทุกเซสชัน</span></div><button id="reset" disabled>ล้างตัวกรอง</button></div>
 <div class="grid">
-<div class="stack"><section class="card"><div class="seg" role="group" aria-label="เลือกค่าของแท่ง"><button id="mn" aria-pressed="true">เซสชัน</button><button id="mb" aria-pressed="false">ซื้อ</button></div><h2>รายเดือน</h2><p>สลับแท่งเป็นจำนวนเซสชันหรือจำนวนที่ซื้อได้ เส้นคืออัตราการซื้อ (ข้อมูลไม่มีเดือน ม.ค. และ เม.ย.)</p><svg id="c1" role="img" aria-label="กราฟรายเดือน"></svg></section>
+<div class="stack"><section class="card" id="monthly"><div class="seg" role="group" aria-label="เลือกค่าของแท่ง"><button id="mn" aria-pressed="true">เซสชัน</button><button id="mb" aria-pressed="false">ซื้อ</button></div><h2>รายเดือน</h2><p>สลับแท่งเป็นจำนวนเซสชันหรือจำนวนที่ซื้อได้ เส้นคืออัตราการซื้อ (ข้อมูลไม่มีเดือน ม.ค. และ เม.ย.)</p><svg id="c1" role="img" aria-label="กราฟรายเดือน"></svg></section>
 <section class="card"><h2>สัดส่วนเซสชันที่ซื้อ</h2><p>คลิกส่วนของโดนัทเพื่อดูเฉพาะเซสชันที่ซื้อหรือไม่ซื้อ</p><svg id="c5" role="img" aria-label="สัดส่วนการซื้อ"></svg></section></div>
 <div class="stack">
-<section class="card"><h2>ประเภทผู้เยี่ยมชม</h2><p>อัตราการซื้อแยกตามประเภท</p><svg id="c2" role="img" aria-label="ประเภทผู้เยี่ยมชม"></svg></section>
+<section class="card" id="segments"><h2>ประเภทผู้เยี่ยมชม</h2><p>อัตราการซื้อแยกตามประเภท</p><svg id="c2" role="img" aria-label="ประเภทผู้เยี่ยมชม"></svg></section>
 <section class="card"><h2>ภูมิภาค</h2><p>อัตราการซื้อแยกตามภูมิภาค</p><svg id="c3" role="img" aria-label="ภูมิภาค"></svg></section>
 </div>
-<section class="card wide"><h2>เวลาที่อยู่ในเว็บ กับ page value</h2><p>แต่ละจุดคือหนึ่งเซสชัน ลากสี่เหลี่ยมเพื่อเลือกกลุ่มจุด แกนทั้งสองใช้สเกลบีบช่วงสูงให้อ่านง่าย</p>
+<section class="card wide" id="behavior"><h2>เวลาที่อยู่ในเว็บ กับ page value</h2><p>แต่ละจุดคือหนึ่งเซสชัน ลากสี่เหลี่ยมเพื่อเลือกกลุ่มจุด แกนทั้งสองใช้สเกลบีบช่วงสูงให้อ่านง่าย</p>
 <div class="leg"><span><i style="background:var(--buy)"></i>ซื้อ</span><span><i style="background:var(--no)"></i>ไม่ซื้อ</span></div>
 <div class="sc" id="sc"><canvas id="cv"></canvas><svg id="c4"></svg></div></section>
-<section class="card wide"><h2>อัตราการซื้อ แยกตามเดือนและประเภทผู้เยี่ยมชม</h2><p>สีเข้มคืออัตราการซื้อสูง ช่องที่มีน้อยกว่า 15 เซสชันไม่แสดงตัวเลข คลิกช่องเพื่อกรองเดือนและประเภทนั้น</p><svg id="c6" role="img" aria-label="heatmap เดือนและประเภทผู้เยี่ยมชม"></svg></section>
+<section class="card wide" id="heatmap"><h2>อัตราการซื้อ แยกตามเดือนและประเภทผู้เยี่ยมชม</h2><p>สีเข้มคืออัตราการซื้อสูง ช่องที่มีน้อยกว่า 15 เซสชันไม่แสดงตัวเลข คลิกช่องเพื่อกรองเดือนและประเภทนั้น</p><svg id="c6" role="img" aria-label="heatmap เดือนและประเภทผู้เยี่ยมชม"></svg></section>
+<section class="card wide dl" id="downloads"><h2>ดาวน์โหลดไฟล์ประกอบงาน</h2><p>รายงาน ซอร์สโค้ด และข้อมูล ใส่ถุงกลับบ้านได้เลย</p>
+<div class="dlgrid">
+<a class="dlitem" href="downloads/process_report.pdf" download><b>📄 รายงานกระบวนการทำงาน</b><span>PDF · ปัญหาที่พบ บทเรียน และ prompts ที่ใช้</span></a>
+<a class="dlitem" href="downloads/online-shoppers-dashboard.zip" download><b>📦 ซอร์สโค้ดทั้งโปรเจกต์</b><span>ZIP · โค้ดเว็บ สคริปต์ ข้อมูล และ README</span></a>
+<a class="dlitem" href="downloads/online_shoppers_cleaned.zip" download><b>📊 ข้อมูลที่ทำความสะอาดแล้ว</b><span>ZIP · online_shoppers_cleaned.csv (12,330 แถว)</span></a>
+<a class="dlitem" href="https://github.com/aunpeeyangamsuai-ops/Aunpeeya-Ngamsuay-dataset-Online-Shoppers-Purchasing-Intention" target="_blank" rel="noopener"><b>🐙 GitHub Repository</b><span>เปิดดูโค้ดและประวัติการแก้ไขทั้งหมด</span></a>
+</div></section>
 </div></main><div id="tip"></div>
 <script src="data/shoppers.js"></script>
-<script src="js/app.js"></script></body></html>
+<script src="js/app.js"></script>
+<script src="js/nav.js"></script></body></html>

@@ -1,0 +1,92 @@
+:root{--bg:#EEF6EC;--panel:#fff;--ink:#16301F;--mute:#55695B;--line:#D2E2D0;--bar:#BEDDC3;--buy:#1E9E4A;--no:#8E9C92;--sel:#0F4D27;--heat0:#FFF1B8;--tag:#FFD21F;--tagink:#2B2200;--sale:#D4141C;--disp:"Kanit","IBM Plex Sans Thai",sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A13;--panel:#16271C;--ink:#E6F2E8;--mute:#9DB3A3;--line:#2A4032;--bar:#2F5238;--buy:#3FD27A;--no:#6F8A77;--sel:#E6F2E8;--heat0:#4B4620}}
+:root[data-theme="dark"]{--bg:#0E1A13;--panel:#16271C;--ink:#E6F2E8;--mute:#9DB3A3;--line:#2A4032;--bar:#2F5238;--buy:#3FD27A;--no:#6F8A77;--sel:#E6F2E8;--heat0:#4B4620}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 "IBM Plex Sans Thai",system-ui,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:clamp(24px,4vw,36px);line-height:1.2;margin:0 0 6px;font-weight:700}
+.sub{color:var(--mute);margin:0 0 20px;max-width:62ch}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.kpi{background:var(--panel);border-radius:10px;padding:14px 16px}
+.kpi b{display:block;font-size:clamp(22px,3.4vw,32px);font-weight:700;font-variant-numeric:tabular-nums}
+.kpi span{color:var(--mute);font-size:13px}
+.kpi.hot b{color:var(--buy)}
+.bar{display:flex;align-items:center;gap:12px;margin:0 0 12px;min-height:36px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.chip{background:var(--sel);color:var(--bg);border-radius:99px;padding:2px 10px;font-size:13px}
+.hint{color:var(--mute);font-size:13px}
+button{font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 14px;cursor:pointer}
+button:focus-visible,.hit:focus-visible{outline:2px solid var(--buy);outline-offset:2px}
+button[disabled]{opacity:.4;cursor:default}
+.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
+.card{background:var(--panel);border-radius:10px;padding:16px;min-width:0}
+.card.wide{grid-column:1/-1}
+h2{font-size:16px;margin:0 0 2px;font-weight:700}
+.card p{margin:0 0 10px;color:var(--mute);font-size:13px}
+.stack{display:grid;gap:12px;align-content:start}
+svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{fill:var(--mute);font:12px "IBM Plex Sans Thai",sans-serif}
+.axis path,.axis line{stroke:var(--line)}
+.hit{cursor:pointer}
+canvas{position:absolute;left:0;top:0}
+.sc{position:relative}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 10px;border-radius:6px;font-size:13px;opacity:0;transition:opacity .1s;z-index:9}
+.leg{display:flex;gap:14px;font-size:13px;color:var(--mute);margin-bottom:6px}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.insight{background:var(--panel);border-left:4px solid var(--buy);border-radius:6px;padding:10px 14px;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;float:right}
+.seg button{border:0;border-radius:0;padding:3px 12px;font-size:13px;background:transparent}
+.seg button[aria-pressed=true]{background:var(--sel);color:var(--bg)}
+.awning{height:14px;background:repeating-linear-gradient(90deg,var(--buy) 0 32px,#fff 32px 64px);border-bottom:4px solid var(--sale)}
+h1,h2,.kpi b{font-family:var(--disp)}
+h2{color:var(--buy)}
+.logo{display:inline-block;width:32px;height:32px;vertical-align:-5px;margin-right:8px;color:var(--buy)}
+.card{border:2px solid var(--line);border-radius:14px}
+.kpi{position:relative;background:var(--tag);color:var(--tagink);border-radius:8px 14px 14px 8px}
+.kpi::before{content:"";position:absolute;top:10px;right:12px;width:10px;height:10px;border-radius:50%;background:var(--bg)}
+.kpi b{color:var(--sale)}
+.kpi span{color:var(--tagink)}
+.kpi.hot{background:var(--sale);color:#fff}
+.kpi.hot b{color:var(--tag)}
+.kpi.hot span{color:#fff}
+.chip{background:var(--tag);color:var(--tagink);font-weight:500}
+.insight{border:2px dashed var(--sale);border-radius:10px}
+#reset{border-color:var(--sale);color:var(--sale)}
+.lane{position:relative;height:44px;overflow:hidden;display:flex;align-items:flex-end}
+.lane .awning{width:100%}
+.cartrun{position:absolute;bottom:16px;left:100%;font-size:28px;line-height:1}
+.cartrun.go{animation:drive 5s linear forwards,bump .4s ease-in-out 12}
+@keyframes drive{from{left:100%}to{left:-60px}}
+@keyframes bump{50%{transform:translateY(-3px) rotate(-4deg)}}
+.tools{display:flex;gap:8px;align-items:center}
+.cartbadge{background:var(--buy);color:#fff;border:0;border-radius:99px;font-weight:700;font-variant-numeric:tabular-nums}
+.cartbadge.bounce{animation:bounce .55s ease-out}
+@keyframes bounce{30%{transform:scale(1.22) rotate(-6deg)}60%{transform:scale(.95)}}
+.kpi{transform-origin:calc(100% - 17px) 15px}
+.kpi.swing{animation:swing .9s ease-out}
+@keyframes swing{25%{transform:rotate(5deg)}50%{transform:rotate(-4deg)}75%{transform:rotate(2deg)}}
+.pop{position:fixed;pointer-events:none;z-index:10;background:var(--sale);color:#fff;font:700 14px var(--disp);padding:2px 12px;border-radius:99px;transform:translate(-50%,-50%);animation:pop .8s ease-out forwards;white-space:nowrap}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}20%{opacity:1;transform:translate(-50%,-70%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-230%) scale(1)}}
+.dlgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dlitem{display:block;text-decoration:none;color:var(--ink);border:2px dashed var(--sale);border-radius:10px;padding:12px 14px;transition:transform .15s,background .15s}
+.dlitem:hover,.dlitem:focus-visible{transform:translateY(-3px);background:var(--bg);outline:none}
+.dlitem:focus-visible{box-shadow:0 0 0 2px var(--buy)}
+.dlitem b{display:block;font-family:var(--disp);font-weight:500;margin-bottom:2px}
+.dlitem span{color:var(--mute);font-size:13px;line-height:1.4;display:block}
+@media (max-width:900px){.dlgrid{grid-template-columns:repeat(2,1fr)}}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:16px;background:var(--panel);border-bottom:2px solid var(--line);padding:8px 16px}
+.nav .brand{display:flex;align-items:center;text-decoration:none;color:var(--buy);font:700 17px var(--disp);white-space:nowrap}
+.nav .brand .logo{width:26px;height:26px;margin-right:6px;vertical-align:0}
+.nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav .links::-webkit-scrollbar{display:none}
+.nav .links a{flex:none;padding:6px 14px;border-radius:99px;color:var(--ink);text-decoration:none;font-weight:500;transition:background .15s}
+.nav .links a:hover{background:var(--bg)}
+.nav .links a.active{background:var(--sel);color:var(--bg)}
+.nav a:focus-visible{outline:2px solid var(--buy);outline-offset:2px}
+@media (max-width:560px){.nav .brand span{display:none}.nav{gap:8px;padding:8px 10px}}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.cartrun{display:none}}
